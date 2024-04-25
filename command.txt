@@ -1,0 +1,29 @@
+To build a docker image and run a container instance:
+docker build -t morl .
+docker run -it --rm --gpus all --shm-size=4g -v ./working path:/workdir morl bash 
+
+To setup environment path:
+nano ~/.bashrc
+export MUJOCO_PY_MUJOCO_PATH=~/.mujoco/mujoco210
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.mujoco/mujoco210/bin
+source ~/.bashrc
+
+or 
+
+nano ~/.zshrc
+export MUJOCO_PY_MUJOCO_PATH=~/.mujoco/mujoco210
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/.mujoco/mujoco210/bin
+source ~/.zshrc
+
+extra install:
+for baseline:
+pip install numpy==1.18.1
+pip install scipy==1.4.1
+
+for moppo:
+pip install Cython==0.29.35 gymnasium tdqm wandb
+
+
+for broke linux core package:
+sudo apt-get update
+sudo apt-get install -y build-essential libosmesa6-dev libgl1-mesa-glx libglfw3 patchelf libglew-dev
